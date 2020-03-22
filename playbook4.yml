@@ -1,0 +1,27 @@
+---
+- name: configuring appache2
+  hosts: all
+  tasks: 
+  - name: install apache2
+    apt:
+     name: apache2
+     state: present
+  - name: edit the index.html file
+    copy:
+     content: "my home page\n"
+     dest: /var/www/html/index.html
+  - name: restart apache2
+    service:
+     name: apache2
+     state: restarted
+  - name: check url response of 1st server
+    uri:
+     url: http://172.31.42.34:8080
+     status_code: 200
+  - name: check url response of 2nd server
+    uri:
+     url: http://172.31.34.210:8080
+     status_code: 200
+
+...
+

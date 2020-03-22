@@ -1,0 +1,9 @@
+---
+- name: creating files on all nodes 
+  hosts: all
+  tasks:
+   - name: create a file
+     file: 
+      name: /home/ubuntu/file1
+      state: touch
+...
